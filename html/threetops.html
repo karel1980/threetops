@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+  <!--link rel="stylesheet" href="jquery-ui.css"-->
+
+  <!--script src="jquery"-->
+  <!--script src="jquery-ui"-->
+</head>
+<body>
+
+  <div id="tile1x1"/>
+  <div id="tile1x2"/>
+  <div id="tile1x3"/>
+  <div id="tile1x4"/>
+
+  <div id="tile2x1"/>
+  <div id="tile2x2"/>
+  <div id="tile2x3"/>
+  <div id="tile2x4"/>
+
+  <div id="tile3x1"/>
+  <div id="tile3x2"/>
+  <div id="tile3x3"/>
+  <div id="tile3x4"/>
+
+  <div id="tile4x1"/>
+  <div id="tile4x2"/>
+  <div id="tile4x3"/>
+  <div id="tile4x4"/>
+
+  <input id="up" type="button" value="up"/>
+  <input id="down" type="button" value="down"/>
+  <input id="left" type="button" value="left"/>
+  <input id="right" type="button" value="right"/>
+
+  <script>
+    var Threes = function(rows,cols) {
+      this.matrix = []
+      for (var i = 0; i < rows; i++) {
+        var row = []
+        this.matrix.push(row)
+        for (var j = 0; j < cols; j++) {
+          row.push("")
+        }
+      }
+    } 
+
+    Threes.prototype.up = function() {
+      // for each column
+      var ops = getOps("up")
+
+      this.applyOps(ops[i])
+
+    }
+
+    Threes.prototype.getOps = function(dir) {
+      var ops = []
+      var freed = []
+      if (dir == "up") {
+        for (var x = 0; x < 4; x++) {
+          var blocked = true;
+          for (var y = 0; y < 4; y++) {
+            var t = process(x,y,x,y+1,ops,blocked);
+            bocked = t.blocked
+            if (y + 1 = 4) {
+              freed.push([x,y])
+            }
+          }
+        }
+      }
+
+      // get all the values currently on the board
+      var values = ops.map(function(op) { return op.result }).filter(function(v) { return v !== undefinedfilter })
+
+      // inject a value into a random value on a square that became blank
+      freed[Math.floor(Math.random() * freed.length)].result = values[Math.floor(Math.random() * freed.length)]
+    }
+
+    Threes.prototype.getOp = function(x1,y1,x2,y2) {
+        var nextVal = y + 1 < 4 ? this.cell(x,y+1) : undefined;
+        var t = this.calculateNext(blocked, cell(x,y), nextVal)
+        var op = [x,y,t.result]
+        ops.push(op)
+        return t
+    }
+
+    Threes.prototype.applyOps = function(ops) {
+        
+    }
+
+    Threes.prototype.calculateNext = function(isblocked, currentVal, nextVal) {
+      t = {
+        result: nextVal,
+        blocked: false
+      }
+      if (currentVal === undefined) {
+        // blank tiles don't move, they just take the value from the next one
+        return t;
+      } else {
+        // current tile is not blank
+        if (!isblocked) {
+          // it's not blocked, so it will just move over and take on the next value
+        } else {
+          if ((currentVal == nextVal) || (currentVal + nextVal == 8)) {
+            // compatible tiles
+            t.result = currentVal + nextVal
+          } else {
+            // incompatible tiles -> don't change
+            t.result = currentVal
+            t.blocked = true
+          }
+        }
+      }
+      return t;
+    }
+
+    $(function() {
+        var threes = new Threes()
+        $("#up").click(function() {
+          threes.up()
+        });
+        $("#down").click(function() {
+          threes.down()
+        });
+        $("#left").click(function() {
+          threes.left()
+        });
+        $("#right").click(function() {
+          threes.right()
+        });
+    })
+  </script>
+
+</body>
+</html>
