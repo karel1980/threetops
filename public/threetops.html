@@ -1,32 +1,33 @@
 <!doctype html>
 <html>
 <head>
-  <!--link rel="stylesheet" href="jquery-ui.css"-->
+  <link rel="stylesheet" href="components/jquery-ui/themes/ui-lightness/jquery-ui.min.css"-->
 
-  <!--script src="jquery"-->
-  <!--script src="jquery-ui"-->
+  <script src="components/jquery/jquery.min.js"></script>
+  <script src="components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script src="js/threetops.js"></script>
 </head>
 <body>
 
-  <div id="tile1x1"/>
-  <div id="tile1x2"/>
-  <div id="tile1x3"/>
-  <div id="tile1x4"/>
+  <div id="tile0x0"></div>
+  <div id="tile1x0"></div>
+  <div id="tile2x0"></div>
+  <div id="tile3x0"></div>
 
-  <div id="tile2x1"/>
-  <div id="tile2x2"/>
-  <div id="tile2x3"/>
-  <div id="tile2x4"/>
+  <div id="tile0x1"></div>
+  <div id="tile1x1"></div>
+  <div id="tile2x1"></div>
+  <div id="tile3x1"></div>
 
-  <div id="tile3x1"/>
-  <div id="tile3x2"/>
-  <div id="tile3x3"/>
-  <div id="tile3x4"/>
+  <div id="tile0x2"></div>
+  <div id="tile1x2"></div>
+  <div id="tile2x2"></div>
+  <div id="tile3x2"></div>
 
-  <div id="tile4x1"/>
-  <div id="tile4x2"/>
-  <div id="tile4x3"/>
-  <div id="tile4x4"/>
+  <div id="tile0x3"></div>
+  <div id="tile1x3"></div>
+  <div id="tile2x3"></div>
+  <div id="tile3x3"></div>
 
   <input id="up" type="button" value="up"/>
   <input id="down" type="button" value="down"/>
@@ -114,21 +115,13 @@
       return t;
     }
 
-    $(function() {
-        var threes = new Threes()
-        $("#up").click(function() {
-          threes.up()
-        });
-        $("#down").click(function() {
-          threes.down()
-        });
-        $("#left").click(function() {
-          threes.left()
-        });
-        $("#right").click(function() {
-          threes.right()
-        });
-    })
+    function updateui() {
+      for (var x = 0; x < 4; x++) {
+        for (var y = 0; y < 4; y++) {
+        }
+      }
+    }
+
   </script>
 
 </body>
